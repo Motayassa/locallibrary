@@ -14,6 +14,8 @@ def index(request):
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
     num_authors = Author.objects.count()
     # Метод 'all()' применён по умолчанию.
+    roman_books = (Book.objects.filter(title__icontains='Roman') |
+                   Book.objects.filter(title__icontains='Rome')).count()
 
     # Отрисовка HTML-шаблона index.html с данными внутри
     # переменной контекста context
@@ -23,5 +25,6 @@ def index(request):
         context={'num_books': num_books,
                  'num_instances': num_instances,
                  'num_instances_available': num_instances_available,
-                 'num_authors': num_authors},
+                 'num_authors': num_authors,
+                 'roman_books': roman_books},
         )
