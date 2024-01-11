@@ -17,7 +17,7 @@ admin.site.register(Author, AuthorAdmin)
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'author', 'display_genre')
 
 
 # Register the Admin classes for BookInstance using the decorator
